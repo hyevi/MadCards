@@ -1,11 +1,11 @@
 name: Build MadCards APK
 
 on:
-  workflow_dispatch: # Позволяет запускать сборку вручную кнопкой в GitHub
+  workflow_dispatch:
   push:
     branches: [ main, master ]
     paths:
-      - '.github/source.zip' # Запуск при обновлении архива
+      - '.github/source.zip'
       - '.github/workflows/build.yml'
 
 jobs:
@@ -30,14 +30,16 @@ jobs:
           java-version: '17'
 
       - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
+        uses: android-actions/setup-android@v4
+        with:
+          packages: 'platform-tools'
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
         with:
           gradle-version: '8.7'
 
-      - name: Grant execute permission for gradlew (если он есть в архиве)
+      - name: Grant execute permission for gradlew
         run: chmod +x src/gradlew || true
         working-directory: src
 
