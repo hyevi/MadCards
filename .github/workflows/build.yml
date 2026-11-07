@@ -1,0 +1,53 @@
+name: Build MadCards APK
+
+on:
+  workflow_dispatch: # Позволяет запускать сборку вручную кнопкой в GitHub
+  push:
+    branches: [ main, master ]
+    paths:
+      - '.github/source.zip' # Запуск при обновлении архива
+      - '.github/workflows/build.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Unzip source code
+        run: |
+          mkdir -p src
+          unzip -o .github/source.zip -d src
+          echo "=== Структура проекта ==="
+          ls -la src
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '8.7'
+
+      - name: Grant execute permission for gradlew (если он есть в архиве)
+        run: chmod +x src/gradlew || true
+        working-directory: src
+
+      - name: Build Debug APK
+        working-directory: src
+        run: gradle :app:assembleDebug --no-daemon --stacktrace
+
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: MadCards-Debug-APK
+          path: src/app/build/outputs/apk/debug/*.apk
+          retention-days: 14
