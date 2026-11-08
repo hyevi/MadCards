@@ -1,5 +1,15 @@
 # 🗺️ MadCards
 
+<p align="center">
+  <img src="https://img.shields.io/badge/Platform-Android-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Platform: Android" />
+  <img src="https://img.shields.io/badge/Min%20SDK-26%20(Android%208.0)-blue?style=for-the-badge" alt="Min SDK 26" />
+  <img src="https://img.shields.io/badge/Kotlin-1.9-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white" alt="Kotlin" />
+  <img src="https://img.shields.io/badge/UI-Jetpack%20Compose-4285F4?style=for-the-badge&logo=jetpackcompose&logoColor=white" alt="Jetpack Compose" />
+  <img src="https://img.shields.io/badge/Transport-Bluetooth%20LE-0082FC?style=for-the-badge&logo=bluetooth&logoColor=white" alt="Bluetooth LE" />
+  <img src="https://img.shields.io/badge/Status-Pilot%20v0.5-orange?style=for-the-badge" alt="Status: Pilot v0.5" />
+  <img src="https://img.shields.io/badge/License-GPL--3.0-lightgrey?style=for-the-badge" alt="License: GPL-3.0" />
+</p>
+
 **Встречи в реальном мире.** Телефон сам замечает других людей с MadCards рядом по Bluetooth, обменивается карточками и записывает, где и когда вы встретились.
 
 > Open Source · GPL-3.0 · без аккаунтов, без сервера, без слежки
